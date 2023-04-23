@@ -1,0 +1,41 @@
+#http://localhost:8082/graphiql?path=/graphql
+type Query{
+    accountsList: [Compte],
+    compteById(id:String):Compte,
+    customersList:[Customer]
+
+}
+
+type Mutation{
+    _addCompte(compte:CompteDTO):Compte,
+    updateCompte(id:String ,compte:CompteDTO):Compte,
+    deleteCompte(id : String):Boolean,
+    addCustomer(customer:CustomerRequest):Customer,
+}
+
+type Compte{
+    id:String ,
+    createAt:Float,
+    balance : Float,
+    currency :String,
+    type:String,
+    customer:Customer
+
+
+}
+type Customer{
+    id:ID,
+    name:String,
+    comptes:[Compte],
+
+}
+input CompteDTO{
+    balance: Float  ,
+    currency: String ,
+    type:String
+}
+input CustomerRequest{
+    name:String
+}
+
+
